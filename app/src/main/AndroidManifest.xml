@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".screen.applicationinviewmodel.ApplicationInViewModelActivity"/>
         <activity android:name=".screen.badgedrawable.BadgeDrawableActivity"/>
         <activity android:name=".screen.dateformat.DateFormatActivity"/>
         <activity android:name=".screen.ellipsize.EllipsizeActivity"/>
