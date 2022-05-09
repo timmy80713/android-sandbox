@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_group_chat"
+        android:icon="@drawable/ic_group_chat"
+        android:orderInCategory="98"
+        android:title="群聊"
+        app:iconTint="@android:color/white"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:orderInCategory="99"
+        android:title="搜尋"
+        app:iconTint="@android:color/white"
+        app:showAsAction="always" />
+</menu>
