@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".screen.badgedrawable.BadgeDrawableActivity"/>
         <activity android:name=".screen.dateformat.DateFormatActivity"/>
+        <activity android:name=".screen.ellipsize.EllipsizeActivity"/>
         <activity android:name=".screen.graphemecluster.GraphemeClusterActivity"/>
     </application>
 
