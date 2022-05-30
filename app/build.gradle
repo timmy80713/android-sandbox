@@ -9,7 +9,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.timmy.codelab.snadbox"
+        applicationId "com.timmy.codelab.sandbox"
         minSdk 23
         targetSdk 31
         versionCode 1
