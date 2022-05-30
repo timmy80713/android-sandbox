@@ -4,10 +4,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageButton
+import androidx.core.view.doOnLayout
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
-import com.timmy.codelab.sandbox.R
 import com.timmy.codelab.sandbox.arch.ViewBindingActivity
 import com.timmy.codelab.sandbox.databinding.ActivityBadgeDrawableBinding
 
@@ -17,8 +18,10 @@ class BadgeDrawableActivity : ViewBindingActivity<ActivityBadgeDrawableBinding>(
 
     private val badgeDrawable by lazy {
         BadgeDrawable.create(this).apply {
-            clearNumber()
             backgroundColor = Color.BLUE
+            badgeGravity = BadgeDrawable.TOP_END
+            isVisible = true
+            maxCharacterCount = 3
         }
     }
 
@@ -36,6 +39,15 @@ class BadgeDrawableActivity : ViewBindingActivity<ActivityBadgeDrawableBinding>(
         viewBinding.apply {
             plus.setOnClickListener(::onPlusClicked)
             minus.setOnClickListener(::onMinusClicked)
+            imageButton.doOnLayout { view ->
+                view as ImageButton
+                badgeDrawable.apply {
+                    horizontalOffset = view.measuredWidth / 2
+                    verticalOffset = view.measuredHeight / 2
+                }.also { badgeDrawable ->
+                    BadgeUtils.attachBadgeDrawable(badgeDrawable, view)
+                }
+            }
         }
     }
 
@@ -44,25 +56,8 @@ class BadgeDrawableActivity : ViewBindingActivity<ActivityBadgeDrawableBinding>(
     }
 
     private fun updateUnreadCount(unreadCount: Int) {
-        val previousUnreadCount = badgeDrawable.number
-        if (previousUnreadCount == 0 && unreadCount == 0) return
-
         badgeDrawable.number = unreadCount
-
-        if (previousUnreadCount == 0 && unreadCount != 0) {
-            BadgeUtils.attachBadgeDrawable(
-                badgeDrawable,
-                viewBinding.toolbar,
-                R.id.action_group_chat
-            )
-        }
-        if (previousUnreadCount != 0 && unreadCount == 0) {
-            BadgeUtils.detachBadgeDrawable(
-                badgeDrawable,
-                viewBinding.toolbar,
-                R.id.action_group_chat
-            )
-        }
+        badgeDrawable.isVisible = unreadCount != 0
     }
 
     private fun onPlusClicked(view: View) {
